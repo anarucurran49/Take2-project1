@@ -29,3 +29,11 @@ Goals:
  2. Loves using smart tools that make life easier
  3. Thrives on visual clarity.
  4. Likes simple, quick and easy to use apps.
+
+ As Taylor I would like to be able to add a food item (description, weight, brand, name) to a food storage location.
+
+ As Taylor I would like to ba able to set multiple quantities.
+
+ As Taylor I would like to put an expiry on the foods I have added. Use of a calendar is a plus.
+
+ As Taylor I would like to see what is in any given food storage.
