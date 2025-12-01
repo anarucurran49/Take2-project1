@@ -6,32 +6,26 @@
     <title>Where Are The Noodles?</title>
     <link rel="stylesheet" href="styles.css">
     <script src ="script.js"></script>
-</head>
-<body>
-    <header>
-<h1>Where are the noodles?</h1>
-<p class="subtitle">Track what's in your cupboards, fridge, freezer.</p>
-    </header>
 
-    <main>
-       <!--Main Navagation Tabs-->
-       <div class="main-tabs">
-        <button class="main-tab-btn active" data-tab="add-item">Add Item</button>
-        <button class="main-tab-btn" data-tab="cupboard">Cupboard</button>
-        <button class="main-tab-btn" data-tab="fridge">Fridge</button>
-        <button class="main-tab-btn" data-tab="freezer">Freezer</button>
-        <button class="main-tab-btn" data-tab="statistics">Statistics</button>
-</div>
 
-<!--Tab Content Container-->
-<div class="tab-content-container">
-<!--Add Item Tab-->
-<div id="tab-add-item" class="tab-content active">
-    <section class="add-item-section">
-        <h2>Add New Item</h2>
+    <script>
+        function switchTab(locationName){
+            const contentSection = document.getElementById('content-section');
+if(locationName === 'Fridge'){
+    contentSection.innerHTML = '<h1>' + locationName + '</h1><ul><li>Meat</li><li>Milk</li></ul>';
+
+} else if(locationName === 'Freezer'){
+    contentSection.innerHTML = '<h1>' + locationName + '</h1><ul><li>Ice Cream</li><li>Frozen Veg</li></ul>';
+
+} else if(locationName === 'Cupboard'){
+    contentSection.innerHTML = '<h1>' + locationName + '</h1><ul><li>Pasta</li><li>Canned Beans</li></ul>';
+
+        }else if(locationName === 'Add Item'){
+    contentSection.innerHTML = ` <h2>Add New Item</h2>
         <form id="addItemForm" class="item-form">
+
             <div class="form-group">
-            <label for="item-name">Item Name</label>
+            <label for="itemName">Item Name</label>
             <input type="text" id="itemName" placeholder="e.g. milk, bread, etc" required>
             </div>
 
@@ -50,11 +44,69 @@
             </div>
             
             <div class="form-group">
-            <label for="itemExpiry">Expiration Date (optional)</label>
+            <label for="expiration-date">Expiration Date (optional)</label>
             <input type="date" id="expiration-date">
             </div>
 
             <button type="submit">Add Item</button>
+        </form>`;
+        }
+    }
+    </script>
+</head>
+<body>
+    <header>
+<h1>Where are the noodles?</h1>
+<p class="subtitle">Track what's in your cupboards, fridge, freezer.</p>
+    </header>
+
+    <main>
+       <!--Main Navagation Tabs-->
+       <div class="main-tabs">
+        <button class="main-tab-btn active" data-tab="add-item" onclick="switchTab('Add Item')">Add Item</button>
+        <button class="main-tab-btn" data-tab="cupboard" onclick="switchTab('Cupboard')">Cupboard</button>
+        <button class="main-tab-btn" data-tab="fridge" onclick="switchTab('Fridge')">Fridge</button>
+        <button class="main-tab-btn" data-tab="freezer" onclick="switchTab('Freezer')">Freezer</button>
+</div>
+
+<!--Tab Content Container-->
+<div class="tab-content-container">
+
+<!--Add Item Tab-->
+<div id="tab-add-item" class="tab-content active">
+    <section class="add-item-section" id="content-section">
+        <h2>Add New Item</h2>
+        <form id="addItemForm" class="item-form">
+
+            <div class="form-group">
+            <label for="itemName">Item Name</label>
+            <input type="text" id="itemName" placeholder="e.g. milk, bread, etc" required>
+            </div>
+
+            <div class="form-group">
+            <label for="item-quantity">Quantity:</label>
+            <input type="number" id="item-quantity" placeholder="item-quantity" min="1" value="1" required>
+            </div>
+            
+            <div class="form-group">
+            <label for="item-location">Location:</label>
+            <select id="item-location" required>
+                <option value="cupboard">Cupboard</option>
+                <option value="fridge">Fridge</option>
+                <option value="freezer">Freezer</option>
+            </select>
+            </div>
+            
+            <div class="form-group">
+            <label for="expiration-date">Expiration Date (optional)</label>
+            <input type="date" id="expiration-date">
+            </div>
+
+            <button type="submit">Add Item</button>
+        </form>
+
+
+</section>
 
             <!--Cupboard tab-->
             <div id="tab-cupboard" class="tab-content">
@@ -84,7 +136,7 @@
     </section>
 </div>
             <!--Statistics tab-->
-            <div id="tab-statistics" class="tab-content">
+<div id="tab-statistics" class="tab-content">
     <section class="statistics-section">
         <h2>Inventory Statistics</h2>
         <div id="statisticsDisplay" class="statistics-grid">
@@ -93,7 +145,7 @@
     </section>
 </div>
 
-        </form>
+        
     </section>
 </div>
 </div>
