@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <strong class="item-name">${escapeHtml(it.name)}</strong>
             <span class="item-qty">x${it.quantity}</span>
             ${it.expirationDate ? `<span class="item-exp">exp: ${escapeHtml(formatExpiry(it.expirationDate))}</span>` : ''}
+            <button class="edit-item" data-id="${it.id}" aria-label="Edit ${escapeHtml(it.name)}">Edit</button>
             <button class="delete-item" data-id="${it.id}" aria-label="Delete ${escapeHtml(it.name)}">Delete</button>
           </li>`;
         });
