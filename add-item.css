@@ -1,0 +1,188 @@
+/* Fun fonts + cleaned interactive Add Item form styling */
+
+/* load funky fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Poppins:wght@300;500;700&display=swap');
+
+:root{
+  --bg-card: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02));
+  --accent-a: #ff7aa2;
+  --accent-b: #6cf3ff;
+  --muted: rgba(11,16,36,0.6);
+  --focus-glow: 0 12px 40px rgba(108,243,255,0.12);
+  --glass: rgba(255,255,255,0.04);
+}
+
+/* card */
+.add-item-section{
+  max-width:760px;
+  margin:0 auto;
+  padding:1.25rem;
+  border-radius:16px;
+  background: var(--bg-card);
+  border:1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 14px 40px rgba(11,16,36,0.08);
+  backdrop-filter: blur(6px) saturate(120%);
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* playful header font */
+.add-item-section h2{
+  font-family: 'Baloo 2', 'Poppins', sans-serif;
+  font-weight:800;
+  letter-spacing:0.02em;
+  color:#081425;
+  margin:0 0 0.6rem 0;
+  font-size:clamp(1.1rem, 3.2vw, 1.6rem);
+  text-shadow: 0 6px 22px rgba(108,243,255,0.06);
+}
+
+/* grid layout */
+.item-form{
+  display:grid;
+  grid-template-columns: 1fr 120px;
+  gap:0.85rem 1rem;
+  align-items:end;
+}
+
+/* each control */
+.form-group{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+
+/* label style - compact + playful */
+.form-group label{
+  font-weight:700;
+  color:var(--muted);
+  font-size:0.9rem;
+  margin-bottom:8px;
+  transition: color .18s, transform .18s;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* lift label on focus-within */
+.form-group:focus-within label{
+  color:var(--accent-b);
+  transform: translateY(-2px) scale(.995);
+}
+
+/* inputs & select */
+.item-form input[type="text"],
+.item-form input[type="number"],
+.item-form input[type="date"],
+.item-form select{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+  color:#081425;
+  font-weight:600;
+  font-size:0.97rem;
+  outline:none;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.02);
+  transition: box-shadow .18s, transform .12s, border-color .18s;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* select arrow polish */
+.item-form select{
+  padding-right:40px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(0,0,0,0.05) 50%),
+    linear-gradient(135deg, rgba(0,0,0,0.02) 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px);
+  background-size: 8px 8px, 8px 8px;
+  background-repeat:no-repeat;
+}
+
+/* focus effect */
+.item-form input:focus,
+.item-form select:focus,
+.item-form input[type="date"]:focus{
+  border-color: rgba(108,243,255,0.6);
+  transform: translateY(-3px);
+  box-shadow: var(--focus-glow);
+}
+
+/* compact quantity */
+#item-quantity{
+  text-align:center;
+  font-weight:800;
+  font-size:1.05rem;
+}
+
+/* hint text under controls */
+.form-group .hint{
+  margin-top:6px;
+  font-size:.82rem;
+  color:rgba(11,16,36,0.55);
+}
+
+/* submit button - glossy capsule with animated sweep */
+.item-form button[type="submit"]{
+  grid-column: 1 / -1;
+  justify-self:center;
+  margin-top:.6rem;
+  padding:12px 28px;
+  border-radius:999px;
+  border:0;
+  color:#081425;
+  font-weight:800;
+  cursor:pointer;
+  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  box-shadow: 0 18px 48px rgba(108,243,255,0.08), 0 2px 0 rgba(255,255,255,0.06) inset;
+  transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s;
+  position:relative;
+  overflow:hidden;
+  font-family: 'Baloo 2', 'Poppins', sans-serif;
+  letter-spacing:0.04em;
+}
+
+/* shiny sweep */
+.item-form button[type="submit"]::after{
+  content:'';
+  position:absolute;
+  left:-36%;
+  top:0;
+  width:36%;
+  height:100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.22), rgba(255,255,255,0.06));
+  transform: skewX(-20deg) translateX(-120%);
+  transition: transform .8s cubic-bezier(.2,.9,.2,1);
+  pointer-events:none;
+}
+.item-form button[type="submit"]:hover::after{
+  transform: skewX(-20deg) translateX(220%);
+}
+
+/* press effect */
+.item-form button[type="submit"]:active{
+  transform: translateY(2px) scale(.995);
+  box-shadow: 0 8px 18px rgba(9,12,24,0.12);
+}
+
+/* small animated accent behind inputs for playful feel */
+.form-group::before{
+  content:'';
+  position:absolute;
+  right:10px;
+  bottom:8px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background: linear-gradient(90deg, rgba(255,122,162,0.9), rgba(108,243,255,0.9));
+  opacity:0.06;
+  transition: transform .22s, opacity .22s;
+}
+.form-group:focus-within::before{
+  transform: scale(1.8);
+  opacity:0.28;
+}
+
+/* responsive */
+@media (max-width:720px){
+  .item-form{ grid-template-columns: 1fr; }
+  .item-form button[type="submit"]{ width:100%; }
+}
