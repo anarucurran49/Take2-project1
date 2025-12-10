@@ -1,0 +1,140 @@
+/* Cleaned items.css — single copy, no duplicates, consistent variables & rules */
+
+:root{
+  --card-radius:12px;
+  --gap:0.85rem;
+  --cupboard-a: #ffefd5;
+  --cupboard-b: #ffd5a8;
+  --fridge-a: #dff7ff;
+  --fridge-b: #bfefff;
+  --freezer-a: #e8f0ff;
+  --freezer-b: #cfe0ff;
+  --card-elev: 0 10px 28px rgba(8,12,24,0.12);
+  --muted-text: rgba(11,16,36,0.65);
+}
+
+/* grid of square cards instead of a vertical list */
+.items-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--gap);
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  align-items: start;
+}
+
+/* each item becomes a square card */
+.item{
+  position: relative;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  aspect-ratio: 1 / 1; /* make it square */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.8rem;
+  box-shadow: var(--card-elev);
+  transition: transform .14s ease, box-shadow .18s ease;
+  cursor: default;
+  min-height: 140px; /* ensures reasonable size on older browsers */
+}
+
+/* card hover lift */
+.item:hover{
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 46px rgba(8,12,24,0.18);
+}
+
+/* content layout inside card */
+.item .item-name{
+  display:block;
+  font-weight:800;
+  font-size:1rem;
+  color:#081425;
+  margin-bottom:0.25rem;
+  text-align:left;
+}
+.item .item-qty,
+.item .item-exp{
+  display:block;
+  font-weight:700;
+  color:var(--muted-text);
+  font-size:0.92rem;
+  margin-top:0.18rem;
+}
+
+/* action row pinned to bottom */
+.item .actions{
+  display:flex;
+  gap:0.5rem;
+  justify-content:flex-end;
+  align-items:center;
+  margin-top:0.6rem;
+}
+.item .edit-item,
+.item .delete-item{
+  padding:6px 8px;
+  border-radius:8px;
+  font-weight:700;
+  border:0;
+  cursor:pointer;
+  font-size:0.85rem;
+  transition: transform .12s;
+}
+
+/* location-specific card skins */
+#tab-cupboard .item{
+  background: linear-gradient(180deg, var(--cupboard-a), var(--cupboard-b));
+  color:#2b1a00;
+}
+#tab-fridge .item{
+  background: linear-gradient(180deg, var(--fridge-a), var(--fridge-b));
+  color:#022033;
+}
+#tab-freezer .item{
+  background: linear-gradient(180deg, var(--freezer-a), var(--freezer-b));
+  color:#03204a;
+}
+
+/* style buttons to contrast with card */
+#tab-cupboard .item .edit-item,
+#tab-cupboard .item .delete-item{
+  background: rgba(255,255,255,0.9);
+  color:#2b1a00;
+}
+#tab-fridge .item .edit-item,
+#tab-fridge .item .delete-item{
+  background: rgba(2,32,51,0.06);
+  color:#022033;
+  backdrop-filter: blur(3px);
+}
+#tab-freezer .item .edit-item,
+#tab-freezer .item .delete-item{
+  background: rgba(3,32,74,0.06);
+  color:#03204a;
+  backdrop-filter: blur(3px);
+}
+
+/* button hover micro-interaction */
+.item .edit-item:hover,
+.item .delete-item:hover{
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* when empty show a centered placeholder spanning full width */
+.tab-content .no-items{
+  display:block;
+  width:100%;
+  text-align:center;
+  padding:2rem 0;
+  color:var(--muted-text);
+}
+
+/* responsive: fewer columns on small screens */
+@media (max-width:720px){
+  .items-list{
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  .item{ aspect-ratio: 10 / 11; } /* slightly taller on small screens */
+}
